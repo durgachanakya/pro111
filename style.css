@@ -1,7 +1,7 @@
 body
 {
   color: white;
-  background: #c0d3ff;
+  background: blueviolet;
 }
 span
 {
@@ -9,19 +9,19 @@ span
 }
 #camera , #result
 {
-  border: 2px dashed black;
+  border: 2px dashed palegreen;
   width: 350px;
   height: 300px; 
 }
-#result_emotion_name ,#result_emotion_name2  
+#result_emotion_name  
 {
   color: black;
 }
-.emotion_name
+.gesture_name
 {
   font-size: 40px;
 }
-.emoji
+.gesture
 {
   font-size:48px;
 }
