@@ -1,60 +1,70 @@
-gesture_1 = "";
-gesture_2 = "";
+prediction_1 = "";
+prediction_2 = "";
 
 Webcam.set({
-    width: 350,
-    height: 300,
-    image_format: 'png',
-    png_quality: 90
+    width : 350,
+    height : 300,
+    image_format : 'png',
+    png_quality : 90
 });
 
 camera = document.getElementById("camera");
-Webcam.attach('#camera');
+Webcam.attach( '#camera' );
 
-function take_snapshot() {
-    Webcam.snap(function (data_uri) {
-        document.getElementById("result").innerHTML = '<img id= "captured_img" src="' + data_uri + '"/>';
+function take_snapshot(){
+    Webcam.snap(function(data_uri) {
+        document.getElementById("result").innerHTML = '<img id= "captured_img" src="'+data_uri+'"/>';
     });
 }
 
-console.log("ml5 version: ", ml5.version);
+console.log("ml5 version: ",ml5.version);
 
-classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/JwAGDkPac/model.json', modelLoaded);
+classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/V4qKTOZN2/model.json',modelLoaded);
 
-function modelLoaded() {
+function modelLoaded(){
     console.log('model Loaded!');
 }
 
-function check() {
-    img = document.getElementById("captured_img");
-    classifier.classify(img, gotresults);
+function speak(){
+    var synth = window.speechSynthesis;
+    speak_data_1 = "The first prediction is " + prediction_1;
+    speak_data_2 = "and the second prediction is " + prediction_2;
+    var utterThis = new SpeechSynthesisUtterance(speak_data_1 + speak_data_2);
+    synth.speak(utterThis);
 }
 
-function gotresults(error, results) {
+function check(){
+    img = document.getElementById('captured_image');
+    classifier.classify(img , gotResult);
+}
+
+function gotResult(error , results){
     if (error) {
         console.error(error);
     } else {
         console.log(results);
         document.getElementById("result_emotion_name").innerHTML = results[0].label;
-        gesture = results[0].label;
-        tospeak = "";
-        if (gesture == "best") {
-            tospeak = "all the best";
-            document.getElementById("update_gesture").innerHTML = "&#128077;";
-        } else if (gesture == "amazing") {
-            tospeak = "this looks amazing";
-            document.getElementById("update_gesture").innerHTML = "&#128076;";
-        } else if (gesture == "victory") {
-            tospeak = "wonderful victory";
-            document.getElementById("update_gesture").innerHTML = "&#9996;";
+        document.getElementById("result_emotion_name2").innerHTML = results[1].label;
+        prediction_1 = results[0].label;
+        prediction_2 = results[1].label;
+        speak();
+        if (results[0].label == "happy"){
+            document.getElementById("update_emoji").innerHTML = "&#128522;" ;
         }
-        speak()
+        if (results[0].label == "sad"){
+            document.getElementById("update_emoji").innerHTML = "&#128532;" ;
+        }
+        if (results[0].label == "angry"){
+            document.getElementById("update_emoji").innerHTML = "&#128548;" ;
+        }
+        if (results[1].label == "happy"){
+            document.getElementById("update_emoji2").innerHTML = "&#128522;" ;
+        }
+        if (results[1].label == "sad"){
+            document.getElementById("update_emoji2").innerHTML = "&#128532;" ;
+        }
+        if (results[1].label == "angry"){
+            document.getElementById("update_emoji2").innerHTML = "&#128548;" ;
+        }
     }
-}
-
-function speak() {
-    var synth = window.speechSynthesis;
-    speak_data = tospeak;
-    var utterThis = new SpeechSynthesisUtterance(speak_data);
-    synth.speak(utterThis);
 }

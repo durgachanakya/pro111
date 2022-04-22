@@ -1,6 +1,7 @@
+ 
 <html>
   <head>
-    <title>HAND GESTURE WEB APP</title>
+    <title>Emotion To Emoji</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,38 +17,42 @@
   <div class="container">
   
     <center>
-      <h3 class="btn btn-warning heading">HAND GESTURE WEB APP
+      <h3 class="btn btn-warning heading">EMOTION TO EMOJI APP
         <br>
-        <span>&#128406;</span>
-        <span>&#129304;</span>
-        <span>&#128075;</span>
-        <span>&#128077;</span>
-        <span>&#128076;</span>
-        <span>&#9996;</span>
+        <span>&#128522;</span>
+        <span>&#128512;</span>
+        <span>&#128532;</span>
+        <span>&#128546;</span>
+        <span>&#128545;</span>
+        <span>&#128548;</span>
       </h3>
       <br><br>
     
-      <p style="font-size: 22px;">Take a selfie of a hand gesture to know about it
+      <p style="font-size: 22px;">Take your selfie to generate emoji
       	<br>
-        <h3>
-            <span>&#128077;</span>
-            <span>&#128076;</span>
-            <span>&#9996;</span>
-        </h3>
+        <b style="color: yellow">Are you Happy?</b>
+        <br>
+        <b style="color: black">Are you Sad?</b>
+        <br>
+        <b style="color: red">Are you Angry?</b>
+        <br>
       </p>
 
       <div class="col-md-4 col-sm-12 col-xs-12">
          <label>WEBCAM VIEW - </label>
          <div id="camera"></div>
            <br><br>
-         <button onclick ="take_snapshot()" class="btn btn-info">CAPTURE IMAGE</button>
+         <button onclick ="take_snapshot()" class="btn btn-warning">CAPTURE IMAGE</button>
       </div>
 
       <div class="col-md-4 col-sm-12 col-xs-12">
-        <label>PREDICTION  -</label>
-        <p class="gesture_name" id= "result_emotion_name"></p>
-        <p class="gesture" id="update_gesture"></p>
+        <label>PREDICTION 1 -</label>
+        <p class="emotion_name" id= "result_emotion_name"></p>
+        <p class="emoji" id="update_emoji"></p>
 
+        <label>PREDICTION 2 -</label>
+        <p class="emotion_name" id= "result_emotion_name2"></p>
+        <p class="emoji" id="update_emoji2"></p>
       </div>
 
       <div class="col-md-4 col-sm-12 col-xs-12">[
@@ -65,3 +70,5 @@
 
   </body>
 </html>]
+
+ 
